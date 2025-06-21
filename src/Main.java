@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         String phone = "+9604-1575 37";
@@ -32,8 +34,35 @@ public class Main {
         String firstName = "Ivanov";
         String middleName = "Ivan";
         String lastName = "Ivanovich";
-        String fullName = firstName + " " + middleName + " " + lastName;
+        String fullName = firstName + " " + middleName + " " + lastName; //конкатенация - склеивание строк
         System.out.println(fullName);
+
+        //пример склеивания строк с помощью метода stringBuilder
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Привет");
+        sb.append(", ");
+        sb.append("мир!");
+
+        System.out.println(sb.toString()); // Вывод: Привет, мир!
+
+        // Можно модифицировать содержимое
+        sb.insert(8, "другой ");
+        System.out.println(sb.toString()); // Вывод: Привет, другой мир!
+        /**
+         * Основные методы StringBuilder
+         * append(String s) — добавляет строку или символ в конец.
+         * insert(int offset, String s) — вставляет строку в указанную позицию.
+         * delete(int start, int end) — удаляет часть строки.
+         * replace(int start, int end, String s) — заменяет часть строки.
+         * toString() — преобразует содержимое StringBuilder обратно в объект String.
+         */
+        //строку перевести в массив
+        String splitStr = "1,2,3"; //создали строку
+        String[] strings = splitStr.split(","); //создали массив для строки и выплали элемент по которому будет разделение ","
+        System.out.println(strings[1]); //выводит на экран "2"
+        System.out.println(Arrays.toString(strings)); //выводит на экран получившийся массив [1, 2, 3]
+
         //Task 2
         System.out.println("Task 2");
         String s1 = fullName.toUpperCase();
@@ -43,5 +72,15 @@ public class Main {
         String fullName2 = "Иванов Семён Семёнович";
         fullName2 = fullName2.replace("ё", "е");
         System.out.println(fullName2);
+
+        String test1 = "test1";
+        String test2 = "test1";
+        String test3 = "Test1";
+        String test4 = new String("test1"); //будет folse
+        test4 = test4.intern();             //принудительно положили в пул строк (станет thrue)
+        System.out.println(test1 == test2); //проверяем пул строк (две переменные ведут на одну и ту же ячейку памяти)
+        System.out.println(test3 == test1);
+        System.out.println(test1 == test4);
+
     }
 }
